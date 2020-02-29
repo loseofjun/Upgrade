@@ -30,6 +30,7 @@ public class DownloadBuilder {
     private UpgradeInfo mUpgradeInfo;//版本更新信息
     private String mApkDir;//存储apk的文件目录
     private String mApkName;//apk的文件名称
+    private long mApkLength;//apk的文件大小
 
     private boolean mIsForceRedownload;//是否强制下载(不使用缓存文件)
     private boolean mIsSilentDownload;//是否静默下载
@@ -139,6 +140,11 @@ public class DownloadBuilder {
         return mApkName;
     }
 
+    //获取apk的文件大小
+    public long getApkLength() {
+        return mApkLength;
+    }
+
     //获取apk的文件地址
     public File getApkFile() {
         return new File(mApkDir, mApkName);
@@ -215,6 +221,8 @@ public class DownloadBuilder {
         if (mApkName == null) {
             return;
         }
+
+        mApkLength=mUpgradeInfo.getApkLength();
 
         VersionService.enqueueWork(this);
     }

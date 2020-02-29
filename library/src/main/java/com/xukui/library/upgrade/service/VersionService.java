@@ -191,7 +191,7 @@ public class VersionService extends Service {
 
         //准备下载apk
         mIsDownloadComplete = false;
-        UpgradeUtil.download(mDownloadBuilder.getUpgradeInfo().getDownloadUrl(), mDownloadBuilder.getApkDir(), mDownloadBuilder.getApkName(), new OnCheckDownloadListener() {
+        UpgradeUtil.download(mDownloadBuilder.getUpgradeInfo().getDownloadUrl(), mDownloadBuilder.getApkDir(), mDownloadBuilder.getApkName(), mDownloadBuilder.getApkLength(),new OnCheckDownloadListener() {
 
             @Override
             public void onCheckerStartDownload() {

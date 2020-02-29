@@ -15,13 +15,15 @@ public abstract class FileCallBack implements Callback {
 
     private String mPath;
     private String mName;
+    private long mLength;
 
     private Handler mHandler;
 
-    public FileCallBack(Handler handler, String path, String name) {
+    public FileCallBack(Handler handler, String path, String name, long length) {
         mHandler = handler;
         mPath = path;
         mName = name;
+        mLength = length;
     }
 
     @Override
@@ -63,6 +65,9 @@ public abstract class FileCallBack implements Callback {
             long sum = 0;
             while ((len = is.read(buf)) != -1) {
                 long total = response.body().contentLength();
+                if (total < 1 && mLength > 1) {
+                    total = mLength;
+                }
                 fos.write(buf, 0, len);
                 sum += len;
                 final int progress = (int) (((double) sum / total) * 100);

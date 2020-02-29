@@ -7,7 +7,16 @@ public class UpgradeInfo implements Serializable {
     private String title;//标题
     private String content;//内容
     private String downloadUrl;//下载地址
+    private long apkLength;//apk大小
     private boolean force = false;//是否强制更新
+
+    public long getApkLength() {
+        return apkLength;
+    }
+
+    public void setApkLength(long apkLength) {
+        this.apkLength = apkLength;
+    }
 
     public String getTitle() {
         return title == null ? "更新提示" : title;

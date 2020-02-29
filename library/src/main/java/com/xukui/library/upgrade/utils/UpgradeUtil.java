@@ -124,7 +124,7 @@ public class UpgradeUtil {
     /**
      * 下载apk
      */
-    public static void download(final String url, final String fileDir, final String fileName, final OnCheckDownloadListener listener) {
+    public static void download(final String url, final String fileDir, final String fileName, final long length,final OnCheckDownloadListener listener) {
         if (url != null && !url.isEmpty()) {
             Handler handler = new Handler(Looper.getMainLooper());
 
@@ -145,7 +145,7 @@ public class UpgradeUtil {
 
             });
 
-            HttpClient.getHttpClient().newCall(request).enqueue(new FileCallBack(handler, fileDir, fileName) {
+            HttpClient.getHttpClient().newCall(request).enqueue(new FileCallBack(handler, fileDir, fileName,length) {
 
                 @Override
                 public void onSuccess(final File file, Call call, Response response) {
